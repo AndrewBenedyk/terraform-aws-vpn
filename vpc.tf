@@ -1,3 +1,4 @@
+#Create VPC for EC2 VPN server
 resource "aws_vpc" "vpn" {
   cidr_block           = var.vpc_cidr_block
   enable_dns_hostnames = true
@@ -8,6 +9,7 @@ resource "aws_vpc" "vpn" {
   }
 }
 
+#Create subnets
 resource "aws_subnet" "vpn-1a" {
   vpc_id                  = aws_vpc.vpn.id
   availability_zone       = "${var.region}a"
