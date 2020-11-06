@@ -184,25 +184,6 @@ Tricky question.
 
 No, you're never invisible on the internets. Don't do bad things cuz Illuminatis are confirmed /o\. Glad you made it this far in the readme! :neckbeard:
 
-### Troubleshooting terraform
-
-In case you get an unclear error message
-
-```bash
-TF_LOG=TRACE terraform your_command
-``` 
-
-### What can I do to improve this project?
-
-Have a look at [the issues](https://github.com/gableroux/terraform-aws-vpn/issues), suggest things or contribute, I'm open to changes.
-
-## Development
-
-### Generate a graph of the plan
-
-```bash
-terraform graph -draw-cycles | dot -Tsvg -o graph.svg
-```
 ## License
 
 [MIT](LICENSE.md) © [Gabriel Le Breton](https://gableroux.com)
