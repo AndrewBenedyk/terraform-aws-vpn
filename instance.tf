@@ -15,21 +15,25 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "server_vpn" {
-  ami               = "${data.aws_ami.ubuntu.id}"
+  ami               = data.aws_ami.ubuntu.id
   instance_type     = "t2.micro"
-  availability_zone = "${aws_subnet.vpn-1a.availability_zone}"
+  availability_zone = aws_subnet.vpn-1a.availability_zone
 
-  subnet_id                   = "${aws_subnet.vpn-1a.id}"
+  subnet_id                   = aws_subnet.vpn-1a.id
   associate_public_ip_address = true
   disable_api_termination     = false
 
   vpc_security_group_ids = [
-    "${aws_security_group.vpn_sg.id}",
+    aws_security_group.vpn_sg.id,
   ]
 
-  key_name = "${var.ec2_ssh_key_name}"
+  key_name = var.ec2_ssh_key_name
 
-  tags {
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  tags = {
     Name = "VPN Server"
   }
 
@@ -40,7 +44,8 @@ resource "aws_instance" "server_vpn" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${file(var.ec2_provisioning_ssh_connection_key_path)}"
+      private_key = file(var.ec2_provisioning_ssh_connection_key_path)
+      host        = aws_instance.server_vpn.public_ip
     }
   }
 
@@ -52,7 +57,8 @@ resource "aws_instance" "server_vpn" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${file(var.ec2_provisioning_ssh_connection_key_path)}"
+      private_key = file(var.ec2_provisioning_ssh_connection_key_path)
+      host        = aws_instance.server_vpn.public_ip
     }
   }
 }

@@ -21,12 +21,10 @@ function upgrade_system_packages_and_prevent_interactive() {
 
 function install_general_packages() {
     sudo apt-get install -y \
-        vim \
         tmux \
         git \
         wget \
-        curl \
-        awscli
+        curl
 }
 
 function download_vpn_script() {

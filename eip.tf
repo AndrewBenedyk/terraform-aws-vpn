@@ -1,8 +1,8 @@
 resource "aws_eip" "server_vpn" {
-  instance = "${aws_instance.server_vpn.id}"
+  instance = aws_instance.server_vpn.id
   vpc      = true
 
-  tags {
+  tags = {
     Name = "vpn server eip"
   }
 }
