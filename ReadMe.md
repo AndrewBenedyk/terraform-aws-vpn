@@ -203,15 +203,6 @@ Have a look at [the issues](https://github.com/gableroux/terraform-aws-vpn/issue
 ```bash
 terraform graph -draw-cycles | dot -Tsvg -o graph.svg
 ```
-
-### Update table of content
-
-generated with [DocToc](https://github.com/thlorenz/doctoc)
-
-```bash
-doctoc --github ReadMe.md
-```
-
 ## License
 
 [MIT](LICENSE.md) © [Gabriel Le Breton](https://gableroux.com)
